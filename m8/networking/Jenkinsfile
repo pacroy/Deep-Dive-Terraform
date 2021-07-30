@@ -9,7 +9,7 @@ pipeline {
     }
 
     environment {
-        TF_HOME = tool('terraform')
+        TF_HOME = tool('terraform-1.0.3')
         TF_INPUT = "0"
         TF_IN_AUTOMATION = "TRUE"
         TF_VAR_consul_address = "host.docker.internal"
