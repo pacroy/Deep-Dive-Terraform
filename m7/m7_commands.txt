@@ -54,7 +54,7 @@ terraform taint aws_cloudwatch_metric_alarm.scale_down_alarm
 terraform taint aws_cloudwatch_metric_alarm.scale_up_alarm
 
 terraform plan -out dev.tfplan
-terraform apply "dev.tfplan
+terraform apply "dev.tfplan"
 
 ### Fix error and try again
 
