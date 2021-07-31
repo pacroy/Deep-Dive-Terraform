@@ -61,18 +61,16 @@ pipeline {
                         apply = true
                     } catch (err) {
                         apply = false
-                        if(params.DESTROY == "true") {
-                            dir('m8/networking/'){
-                                sh "terraform destroy -auto-approve"
-                            }
-                        } else {
-                            currentBuild.result = 'UNSTABLE'
-                        }
+                        currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
                         dir('m8/networking/'){
-                            unstash "terraform-networking-plan"
-                            sh 'terraform apply terraform-networking.tfplan'
+                            if(params.DESTROY == "true") {
+                                sh "terraform destroy -auto-approve"
+                            } else {
+                                unstash "terraform-networking-plan"
+                                sh 'terraform apply terraform-networking.tfplan'
+                            }
                         }
                     }
                 }
